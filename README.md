@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/28935661/README.md)
+[README.md](https://github.com/user-attachments/files/28936166/README.md)
 <div align="center">
 
 # bedrock
@@ -75,6 +75,45 @@ bill, `2` = nothing to audit (package not installed here).
 No account. No telemetry. No hosted service. Nothing phones home. bedrock runs
 entirely on your machine and costs you — and us — nothing per audit. That is
 deliberate (see [`docs/WHY-FREE.md`](docs/WHY-FREE.md)).
+
+## Repository map
+
+Small on purpose. The whole tool is one file; everything else is either a
+mirror of it, a test of it, or an open statement of what it claims and why.
+
+```
+bedrock-rigor/
+├── bedrock.py                    ← the entire tool, one file. Read this first.
+├── README.md                     ← you are here
+├── LICENSE                       ← MIT
+├── CONTRIBUTING.md               ← the most welcome PR is an audit of the auditor
+├── pyproject.toml                ← packaging; `pip install bedrock-audit`
+│
+├── src/bedrock/
+│   ├── __init__.py               ← byte-identical mirror of bedrock.py (installed copy)
+│   └── __main__.py               ← enables `python -m bedrock`
+│
+├── tests/
+│   └── test_bedrock.py           ← 6 tests: tiers, weakest-link, seal chain, CycloneDX
+│
+├── docs/
+│   ├── METHOD.md                 ← the foundations the tiers rest on — open for inspection
+│   └── WHY-FREE.md               ← why this is free-forever, not free-trial
+│
+├── examples/
+│   └── quickstart.md             ← three commands, no step two
+│
+├── .github/workflows/
+│   └── self-audit.yml            ← the repo audits its own dependency on every push
+│
+└── dist/                         ← prebuilt wheel + sdist, validated with `twine check`
+```
+
+**Where to start, by what you want:**
+- *Just use it* → [`examples/quickstart.md`](examples/quickstart.md)
+- *Read the code* → [`bedrock.py`](bedrock.py) — the `audit()` function is the core, ~20 lines
+- *Check the claims* → [`docs/METHOD.md`](docs/METHOD.md) and the `tests/`
+- *Understand the model* → [`docs/WHY-FREE.md`](docs/WHY-FREE.md)
 
 ## In CI
 
