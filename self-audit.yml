@@ -1,0 +1,19 @@
+name: self-audit
+on: [push, pull_request]
+jobs:
+  test-and-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install
+        run: pip install -e .
+      - name: Run the test suite
+        run: pip install pytest && python -m pytest tests/ -q
+      - name: bedrock audits its own dependency
+        run: bedrock packaging --verify-source --json
+      # A tool that prices trust should be willing to be checked by itself.
+      # This does not gate the build on a FAIL (CVEs in deps are findings,
+      # not build errors) — it publishes the verdict for anyone to read.
+        continue-on-error: true

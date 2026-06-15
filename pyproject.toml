@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bedrock-audit"
+version = "0.1.0"
+description = "Supply-chain auditor that prices popularity at zero. Verifies installed artifacts against published source, emits CycloneDX SBOM. One command, zero config, free."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{name = "James Alexander Pugmire"}]
+keywords = ["supply-chain", "security", "sca", "sbom", "cyclonedx", "audit", "dependencies", "vulnerability"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+  "Programming Language :: Python :: 3",
+]
+dependencies = ["packaging>=23"]
+
+[project.urls]
+Homepage = "https://github.com/Bedrock-Auditing/Bedrock"
+Issues = "https://github.com/Bedrock-Auditing/Bedrock/issues"
+
+[project.scripts]
+bedrock = "bedrock:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
